@@ -1,6 +1,6 @@
 services:
   postgres:
-    image: pgvector/pgvector:pg16
+    image: pgvector/pgvector:pg16@sha256:ccc6e83d6e35e931dc7c5def2022729d5a6c370318d099181995567ff1fb4d6b
     environment:
       - POSTGRES_DB=${POSTGRES_DB}
       - POSTGRES_USER=${POSTGRES_USER}
@@ -27,7 +27,7 @@ services:
       retries: 5
 
   redis:
-    image: redis:7-alpine
+    image: redis:7-alpine@sha256:ff02b58f971e7d7d156a1267e283fcbbeee91773b6aa36c49dac28ecfe28eadf
     command: redis-server --appendonly yes --requirepass ${REDIS_PASSWORD}
     volumes:
       - redis_data:/data
@@ -51,7 +51,7 @@ services:
       retries: 5
 
   embeddings:
-    image: ghcr.io/huggingface/text-embeddings-inference:cpu-latest
+    image: ghcr.io/huggingface/text-embeddings-inference:cpu-latest@sha256:cb570aabbfa016b86684f576b5bd72d1ee96cc0b7a00b0ad221b298762b32157
     command:
       [
         "--model-id",
@@ -83,7 +83,7 @@ services:
           memory: 2048M
 
   api:
-    image: ghcr.io/plastic-labs/honcho:v3.0.9
+    image: ghcr.io/plastic-labs/honcho:v3.0.9@sha256:32a831e303fa4053bf82af3b65cea019b80a7b491cfcdef3b5cb81c8cef635bf
     command: ["sh", "docker/entrypoint.sh"]
     env_file: .env
     ports:
@@ -126,7 +126,7 @@ services:
       start_period: 60s
 
   deriver:
-    image: ghcr.io/plastic-labs/honcho:v3.0.9
+    image: ghcr.io/plastic-labs/honcho:v3.0.9@sha256:32a831e303fa4053bf82af3b65cea019b80a7b491cfcdef3b5cb81c8cef635bf
     command: ["/app/.venv/bin/python", "-m", "src.deriver"]
     env_file: .env
     networks:
