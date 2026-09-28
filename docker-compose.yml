@@ -27,7 +27,7 @@ services:
       retries: 5
 
   redis:
-    image: redis:7-alpine@sha256:ff02b58f971e7d7d156a1267e283fcbbeee91773b6aa36c49dac28ecfe28eadf
+    image: redis:7-alpine@sha256:858f009f9709ce576febc734aa78b8f6d624b82571f9ddb6bda4377c833b3499
     command: redis-server --appendonly yes --requirepass ${REDIS_PASSWORD}
     volumes:
       - redis_data:/data
@@ -51,7 +51,7 @@ services:
       retries: 5
 
   embeddings:
-    image: ghcr.io/huggingface/text-embeddings-inference:cpu-latest@sha256:cb570aabbfa016b86684f576b5bd72d1ee96cc0b7a00b0ad221b298762b32157
+    image: ghcr.io/huggingface/text-embeddings-inference:cpu-latest@sha256:1bd34a7178b00f822b951bb29944e696edcbc83cbf198ef36e3683571c71e9d4
     command:
       [
         "--model-id",
