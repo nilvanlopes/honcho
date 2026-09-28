@@ -83,7 +83,7 @@ services:
           memory: 2048M
 
   api:
-    image: ghcr.io/plastic-labs/honcho:v3.1.0@sha256:b73a8015f9e3ee51525e5b5cb238a915aa47de5107593d81b892213322fa369d
+    image: ghcr.io/plastic-labs/honcho:v3.2.1@sha256:a6bf2f03d47d91281521830ba2a32710a60bde207c37c8f2049fd1ac7619c6d9
     command: ["sh", "docker/entrypoint.sh"]
     env_file: .env
     ports:
@@ -126,7 +126,7 @@ services:
       start_period: 60s
 
   deriver:
-    image: ghcr.io/plastic-labs/honcho:v3.1.0@sha256:b73a8015f9e3ee51525e5b5cb238a915aa47de5107593d81b892213322fa369d
+    image: ghcr.io/plastic-labs/honcho:v3.2.1@sha256:a6bf2f03d47d91281521830ba2a32710a60bde207c37c8f2049fd1ac7619c6d9
     command: ["/app/.venv/bin/python", "-m", "src.deriver"]
     env_file: .env
     networks:
