@@ -52,6 +52,12 @@ services:
 
   embeddings:
     image: ghcr.io/huggingface/text-embeddings-inference:cpu-latest@sha256:b6876bfefd122ff96dba694a86c18a28ec8aa97d55d57e52b47a2fb0dc1b56c1
+    healthcheck:
+      test: ["CMD", "curl", "--fail", "--silent", "--show-error", "--max-time", "4", "http://127.0.0.1/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 180s
     command:
       [
         "--model-id",
@@ -127,6 +133,12 @@ services:
 
   deriver:
     image: ghcr.io/plastic-labs/honcho:v3.6.1@sha256:2ced1a958f14c128ddb05e68deb549f9281681e44595a7a3c34adebf5b432b16
+    healthcheck:
+      test: ["CMD", "/app/.venv/bin/python", "-c", "from pathlib import Path; import os; os.kill(1,0); assert b'src.deriver' in Path('/proc/1/cmdline').read_bytes()"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 60s
     command: ["/app/.venv/bin/python", "-m", "src.deriver"]
     env_file: .env
     networks:
