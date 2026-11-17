@@ -51,7 +51,7 @@ services:
       retries: 5
 
   embeddings:
-    image: ghcr.io/huggingface/text-embeddings-inference:cpu-latest@sha256:f85b9de9f5e34f083c5b9b6c8cb445154506a4f02ea79c9176e64fca3cc95b5a
+    image: ghcr.io/huggingface/text-embeddings-inference:cpu-latest@sha256:b6876bfefd122ff96dba694a86c18a28ec8aa97d55d57e52b47a2fb0dc1b56c1
     command:
       [
         "--model-id",
